@@ -4,6 +4,10 @@
 int main(int argc, char *argv[]){
     int num = atoi(argv[1]);
 
+    char *esPar = (num % 2 == 0) ? "es par\n" : "es impar\n";
+    printf("%s", esPar);
+
+/*
     if(num % 2 == 0){
         printf("Es par");
     }else if(num % 2 >= 1){
@@ -11,5 +15,6 @@ int main(int argc, char *argv[]){
     }else{
         printf("Es 0");
     }
+*/
     return 0;
 }

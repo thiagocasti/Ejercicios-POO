@@ -4,12 +4,8 @@
 int main(int argc, char *argv[]){
     int num = atoi(argv[1]);
 
-    if(num > 0){
-        printf("Es positivo");
-    }else if(num < 0){
-        printf("Es negativo");
-    }else{
-        printf("Es cero");
-    }
+    char *esPositivo = (num >= 0) ? "Es positivo\n" : "es negativo\n";
+
+    printf("%s", esPositivo);
     return 0;
 }
