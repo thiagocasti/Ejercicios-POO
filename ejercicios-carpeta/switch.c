@@ -5,7 +5,7 @@ void print_menu() {
     puts("1. Determina si un número es positivo o negativo");
     puts("2. Determina si un número es par o impar");
     puts("3. Determina si un número es múltiplo de 2, de 3 o de ambos");
-    puts("4. Determina el mayor de tres números");
+    puts("4. Determina el mayor de tres números(debera haber agregado 3 numeros anteriormente en la linea de comandos)");
     puts("5. Salir");
     puts("Seleccione una opción: ");
 }
