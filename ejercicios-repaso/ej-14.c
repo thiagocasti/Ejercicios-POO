@@ -9,4 +9,6 @@ int main(void){
     int numeroAbsoulto = (n < 0) ? (n * -2) + n : n;
 
     printf("El valor absoluto es: %d", numeroAbsoulto);
+
+    return 0;
 }
