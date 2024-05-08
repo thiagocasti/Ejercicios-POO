@@ -20,7 +20,7 @@ int main() {
         for(int j = 0; j < columnas; j++){
             //verifica los bordes de la matriz
             if(i == 0 || i == filas - 1 || j == 0 || j == columnas - 1){
-                matriz[i][j] = "~~\t";
+                matriz[i][j] = "\033[1;34m~~\033[0m\t";
             }else{
                 matriz[i][j] = "x\t";
                 matriz[randomFila][randomColumna] = "\xE2\x98\xA0\xEF\xB8\x8F\t";
