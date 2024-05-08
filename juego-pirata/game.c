@@ -2,46 +2,32 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define FILAS 5
-#define COLUMNAS 5
+int main() {
+    int filas, columnas;
+    printf("Bienevenido a este juego del pirata del tesoro! en este juego usted debera\n encontrar un tesoro escondido dentro de un mapa que usted elijira el tamaño, el mismo estara rodeado de agua, debera mover su personaje representado por \xE2\x98\xA0\xEF\xB8\x8F, debera moverlo por alrededor del mapa hasta que encuentre el tesoro, pero cuidado con no caer al agua!\n diviertase y encuentre el tesoro lo mas rapido que pueda!\n\n ");
+    srand(time(NULL));
+    printf("Elige el alto del mapa, tome en cuenta que el alto es este\n\033[1;33mX\033[0mXX\n\033[1;33mX\033[0mXX\n\033[1;33mX\033[0mXX\nIngrese aqui(tome en cuenta que el valor debes ser mayor a de 3): ");    
+    scanf("%d", &filas);
+    printf("Elige el largo del mapa, tome en cuenta que el largo del mapa es este\n\033[1;33mXXX\nXXX\nXXX\033[0m \nIngrese aqui(tome en cuenta que el valor debe ser mayor a 3): ");
+    scanf("%d", &columnas);
 
-// Función para imprimir la matriz
-void imprimirMatriz(int matriz[FILAS][COLUMNAS], int filaPersonaje, int colPersonaje) {
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            //Esto
-            if (i == filaPersonaje && j == colPersonaje) {
-                printf("P "); // Caracter para representar al personaje
-            } else {
-                printf("%d ", matriz[i][j]);
+    char *matriz[filas][columnas];
+
+    int randomFila = rand()% (filas - 2) +1;
+    int randomColumna = rand() % (columnas - 2) + 1;
+
+    for(int i = 0; i < filas; i++){
+        for(int j = 0; j < columnas; j++){
+            //verifica los bordes de la matriz
+            if(i == 0 || i == filas - 1 || j == 0 || j == columnas - 1){
+                matriz[i][j] = "~~\t";
+            }else{
+                matriz[i][j] = "x\t";
+                matriz[randomFila][randomColumna] = "\xE2\x98\xA0\xEF\xB8\x8F\t";
             }
+            printf("%s", matriz[i][j]);
         }
         printf("\n");
     }
-}
-
-int main() {
-    // Semilla para generar números aleatorios
-    srand(time(NULL));
-
-    // Declarar la matriz
-    int matriz[FILAS][COLUMNAS];
-
-    // Llenar la matriz con números aleatorios
-    for (int i = 0; i < FILAS; i++) {
-        for (int j = 0; j < COLUMNAS; j++) {
-            matriz[i][j] = rand() % 100; // Genera números aleatorios entre 0 y 99
-        }
-    }
-
-    // Posición inicial del personaje
-    int filaPersonaje = 0;
-    int colPersonaje = 0;
-
-    // Imprimir la matriz con el personaje en su posición inicial
-    imprimirMatriz(matriz, filaPersonaje, colPersonaje);
-
-    // Mover el personaje dentro de la matriz
-
     return 0;
 }
