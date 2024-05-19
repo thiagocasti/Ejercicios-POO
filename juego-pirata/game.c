@@ -115,11 +115,11 @@ void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inic
         if (filaActual == posicionTesoroFila && columnaActual == posicionTesoroColumna) {
             limpiarTerminal();
             imprimirMapa(filas, columnas, mapa);
-            printf("Felicidades ¡Has encontrado el tesoro!\n");
+            printf("\033[0;32mFelicidades ¡Has encontrado el tesoro!\033[0m\n");
             return;
         }else if(filaActual == 0 || filaActual == filas - 1 || columnaActual == 0 || columnaActual == columnas - 1){
             imprimirMapa(filas, columnas, mapa);
-            printf("Lo siento usted se ha ahogado.\n");
+            printf("\033[1;31mLo siento usted se ha ahogado.\n\033[0m  ");
             return;
         }
 
@@ -127,5 +127,5 @@ void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inic
     }
 
     imprimirMapa(filas, columnas, mapa);
-    printf("Has alcanzado el limite de 50 movimientos. Mejor suerte la próxima vez\n");
+    printf("\033[1;31mHas alcanzado el limite de 50 movimientos. Mejor suerte la próxima vez\n\033[0m");
 }
