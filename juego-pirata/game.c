@@ -62,6 +62,7 @@ void inicializarMapa(int filas, int columnas, char *mapa[filas][columnas], int *
     }
 
     // Coloca al personaje y al tesoro en la matriz
+
     mapa[randomFila][randomColumna] = "\xE2\x98\xA0\xEF\xB8\x8F\t";
     mapa[*posicionTesoroFila][*posicionTesoroColumna] = "x\t";
     
@@ -70,6 +71,7 @@ void inicializarMapa(int filas, int columnas, char *mapa[filas][columnas], int *
 }
 
 void imprimirMapa(int filas, int columnas, char *mapa[filas][columnas]) {
+ 
     for(int i = 0; i < filas; i++) {
         for(int j = 0; j < columnas; j++) {
             printf("%s", mapa[i][j]);
@@ -79,13 +81,13 @@ void imprimirMapa(int filas, int columnas, char *mapa[filas][columnas]) {
 }
 
 void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inicialFila, int inicialColumna, int posicionTesoroFila, int posicionTesoroColumna) {
+ 
     int movimientos = 0;
     int filaActual = inicialFila;
     int columnaActual = inicialColumna;
     char direccion;
 
     while (movimientos < 50) {
-        limpiarTerminal();
         imprimirMapa(filas, columnas, mapa);
         printf("Movimientos restantes: %d\n", 50 - movimientos);
         printf("Ingrese la direccion (w, a, s, d): ");
@@ -95,32 +97,35 @@ void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inic
         mapa[filaActual][columnaActual] = "x\t";
 
         //la posicion del pirata segun la direccion ingresada
-        if (direccion == 'w' && filaActual > 1) {
+        if (direccion == 'w') {
             filaActual--;
-        } else if (direccion == 's' && filaActual < filas - 2) {
+        } else if (direccion == 's' ) {
             filaActual++;
-        } else if (direccion == 'd' && columnaActual < columnas - 2) {
+        } else if (direccion == 'd' ) {
             columnaActual++;
-        } else if (direccion == 'a' && columnaActual > 1) {
+        } else if (direccion == 'a' ) {
             columnaActual--;
         } else {
             printf("Movimiento no valido, intente de nuevo.\n");
         }
+        
         //vuelve a imprimir 
         mapa[filaActual][columnaActual] = "\xE2\x98\xA0\xEF\xB8\x8F\t";
-        
         // si el pirata ha encontrado el tesoro
         if (filaActual == posicionTesoroFila && columnaActual == posicionTesoroColumna) {
             limpiarTerminal();
             imprimirMapa(filas, columnas, mapa);
             printf("Felicidades ¡Has encontrado el tesoro!\n");
             return;
+        }else if(filaActual == 0 || filaActual == filas - 1 || columnaActual == 0 || columnaActual == columnas - 1){
+            imprimirMapa(filas, columnas, mapa);
+            printf("Lo siento usted se ha ahogado.\n");
+            return;
         }
 
         movimientos++;
     }
 
-    limpiarTerminal();
     imprimirMapa(filas, columnas, mapa);
     printf("Has alcanzado el limite de 50 movimientos. Mejor suerte la próxima vez\n");
 }
