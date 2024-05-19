@@ -28,7 +28,7 @@ int main() {
     int posicionFila, posicionColumna, posicionTesoroFila, posicionTesoroColumna;
     inicializarMapa(filas, columnas, mapa, &posicionFila, &posicionColumna, &posicionTesoroFila, &posicionTesoroColumna);
     imprimirMapa(filas,columnas, mapa);
-    
+
     return 0;
 }
 
@@ -67,5 +67,9 @@ void imprimirMapa(int filas, int columnas,char *mapa[filas][columnas]) {
             printf("%s", mapa[i][j]);
         }
         printf("\n");
-    }
+    }   
+}
+
+void BuscarTesoro {
+    
 }
