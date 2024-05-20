@@ -1,7 +1,10 @@
+/*Este juego fue compilado con gcc 11.4.0 año 2021 si esta usando windows  puede que en la terminal no 
+se muestren varios colores, signos etc.*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
+//funcio para limpiar la terminal automaticamente con los comandos cls y clear
 void limpiarTerminal() {
     #if defined(_WIN32) || defined(_WIN64)
         system("cls");
@@ -9,7 +12,7 @@ void limpiarTerminal() {
         system("clear");
     #endif
 }
-
+//definicion de las 3 funciones
 void inicializarMapa(int filas, int columnas, char *mapa[filas][columnas], int *posicionFila, int *posicionColumna, int *posicionTesoroFila, int *posicionTesoroColumna);
 void imprimirMapa(int filas, int columnas, char *mapa[filas][columnas]);
 void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inicialFila, int inicialColumna, int tesoroFila, int tesoroColumna);
@@ -23,7 +26,7 @@ int main() {
     scanf("%d", &filas);
     printf("Elige el largo del mapa, tome en cuenta que el largo del mapa es este\n\033[1;33mXXX\nXXX\nXXX\033[0m \nIngrese aqui(tome en cuenta que el valor debe ser mayor a 4): ");
     scanf("%d", &columnas);
-
+    //codicional para el tamaño minimo y maximo de la matriz
     if(filas <= 3 && columnas <= 3){
         printf("\nIngrese un numero mas alto de filas y columnas\n");
         return 1;
@@ -32,9 +35,10 @@ int main() {
         return 1;
     }
 
-
+    // declaracion de las funciones dentro de main
     char *mapa[filas][columnas];
     int posicionFila, posicionColumna, posicionTesoroFila, posicionTesoroColumna;
+    ///llamado a las funciones (la 3 no se incluye debido a que se usa para actualizar en la funcion buscar tesoro)
     inicializarMapa(filas, columnas, mapa, &posicionFila, &posicionColumna, &posicionTesoroFila, &posicionTesoroColumna);       
     BuscarTesoro(filas, columnas, mapa, posicionFila, posicionColumna, posicionTesoroFila, posicionTesoroColumna);
     return 0;
@@ -81,13 +85,16 @@ void imprimirMapa(int filas, int columnas, char *mapa[filas][columnas]) {
 }
 
 void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inicialFila, int inicialColumna, int posicionTesoroFila, int posicionTesoroColumna) {
- 
+    
+    //reasignacion de variables a las variables de buscar el tesoro
     int movimientos = 0;
     int filaActual = inicialFila;
     int columnaActual = inicialColumna;
     char direccion;
 
+    //loop hasta los 50 movimientos
     while (movimientos < 50) {
+        //una vez iniciada la busqueda del tesoro se limpia la terminal
         limpiarTerminal();
         imprimirMapa(filas, columnas, mapa);
         printf("Movimientos restantes: %d\n", 50 - movimientos);
@@ -127,6 +134,7 @@ void BuscarTesoro(int filas, int columnas, char *mapa[filas][columnas], int inic
 
         movimientos++;
     }
+
     limpiarTerminal();
     imprimirMapa(filas, columnas, mapa);
     printf("\033[1;31mHas alcanzado el limite de 50 movimientos. Mejor suerte la próxima vez\n\033[0m");
