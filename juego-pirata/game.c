@@ -4,7 +4,9 @@ se muestren varios colores, signos etc.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-//funcio para limpiar la terminal automaticamente con los comandos cls y clear
+
+//funcion para limpiar la terminal automaticamente con los comandos cls y clear
+
 void limpiarTerminal() {
     #if defined(_WIN32) || defined(_WIN64)
         system("cls");
