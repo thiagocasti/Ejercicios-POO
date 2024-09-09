@@ -42,21 +42,19 @@ void imprimirTablero(int board[SIZE][SIZE]){
     printf("+-------+-------+-------+\n");
 }
 
-void rellenarTablero(int board[SIZE][SIZE], int num_elements) {
-    int filled[SIZE * SIZE] = {0}; // Array para registrar celdas llenas
-    int filled_count = 0; // Contador de celdas llenas
+void rellenarTablero(int board[SIZE][SIZE]){
+    int num_elementos = 20;
 
-    for (int k = 0; k < num_elements; k++) {
-        int row, col;
-        do {
-            row = rand() % SIZE;
+    for(int k = 0; k < num_elementos; k++){
+        int fila = rand() % SIZE;   
+        int col = rand() % SIZE;
+        int num = rand() % SIZE + 1;
+
+        while(board[fila][col] != 0){
+            fila = rand() % SIZE;
             col = rand() % SIZE;
-        } while (filled[row * SIZE + col]); // Verifica si la celda ya está llena
-
-        int num = (rand() % SIZE) + 1;
-        board[row][col] = num;
-        filled[row * SIZE + col] = 1; // Marca la celda como llena
-        filled_count++;
+        }
+        board[fila][col] = num;
     }
 }
 
@@ -67,8 +65,8 @@ int main(void){
     int board[SIZE][SIZE];
 
     inicializarTablero(board);
-    int num_elements = 20;
-    rellenarTablero(board, num_elements);
+
+    rellenarTablero(board);
 
     imprimirTablero(board);
 
