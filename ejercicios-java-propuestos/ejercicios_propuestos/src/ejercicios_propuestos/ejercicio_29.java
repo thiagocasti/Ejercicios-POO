@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class ConcatenarFrases {
+public class ejercicio_29 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String frase;
